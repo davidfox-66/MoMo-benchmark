@@ -109,7 +109,7 @@ class SNU_FILM(data.Dataset):
         :param mode:        ['easy', 'medium', 'hard', 'extreme']
         '''
         self.data_root = data_root
-        test_fn = os.path.join(data_root, 'eval_modes', f'test-{mode}.txt')
+        test_fn = os.path.join(data_root, f'test-{mode}.txt')
         with open(test_fn, 'r') as f:
             self.frame_list = f.read().splitlines()
         self.frame_list = [v.split(' ') for v in self.frame_list]
@@ -164,6 +164,9 @@ class Middlebury_others(data.Dataset):
         img3 = to_tensor(Image.open(os.path.join(self.input_path, seq_name, 'frame11.png')).convert('RGB'))
 
         return torch.stack([img1, img3], dim=1), gt, 0.5, seq_name
+    
+
+
 
 
 # modified from softsplat repo.
